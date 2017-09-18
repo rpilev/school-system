@@ -3,9 +3,11 @@ import VueRouter from 'vue-router';
 import VueStash from 'vue-stash';
 import App from './App.vue';
 import { routes } from './routes';
+import Icon from 'vue-awesome';
 
 Vue.use(VueStash)
 Vue.use(VueRouter);
+Vue.component('icon', Icon)
 
 const router = new VueRouter({
   routes,
@@ -18,7 +20,9 @@ new Vue({
   data: {
     /* VueStash Store */
     store: {
-      teachers: []
+      teachers: [],
+      students: [],
+      lessons: []
     }
   },
   render: h => h(App)
