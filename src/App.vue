@@ -89,6 +89,10 @@ table thead,  table tfoot {
   font-size: 14px;
   margin-top: 7px;
 }
+.table-name-row {
+  max-width: 350px;
+  word-break: break-all;
+}
 
 /* MOBILE SUPPORT */
 
@@ -122,16 +126,15 @@ table thead,  table tfoot {
   .add-button {
     display: block;
   }
+  #main-logo{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
   .table-name-row {
     max-width: 93px;
     word-break: break-all;
-  }
-
-}
-
-@media screen and (max-width: 750px) {
-  #main-logo{
-    display: none;
   }
 }
 </style>

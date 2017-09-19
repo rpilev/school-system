@@ -1,10 +1,14 @@
 <template>
   <div>
     <transition name='fade' mode='out-in'>
-      <a v-if='!showTeacherAddForm' class="button is-info add-button" @click='toggleAddTeacher'>Add Teacher</a>
+      <a 
+        v-if='!showTeacherAddForm'
+        class="button is-info add-button"
+        @click='toggleAddTeacher'
+      >Add Teacher</a>
 
       <!-- Teacher add form -->
-      <div v-else='showTeacherAddForm' class="field">
+      <div v-else class="field">
         <h2>Add Teacher</h2>
         <label class="label">Name</label>
         <div class="control">
@@ -46,18 +50,26 @@
           <tr :key="index" v-for='(teacher, index) in $store.teachers'>
             
             <!-- If the current index is being edited show an input field, otherwise just the name -->
-            <td v-if='editing == index' class="tableNameRow">
-                <input 
-                 :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
-                 type="text"
-                 name=""
-                 v-model="teacher_name"
-                >
-                <button @click="submitEdit(index)" class="button is-info custom-edit-button">Ok</button>
-                <span v-show='!form_valid' class="help is-danger">Please enter a name</span>
+            <td class="table-name-row">
+              <transition name='slide' mode='out-in'>
+                <div key='1' v-if='editing == index'>
+                  <input  
+                   :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
+                   type="text"
+                   name=""
+                   v-model="teacher_name"
+                   @input="form_valid = true"
+                  >
+                  <button @click="submitEdit(index)" class="button is-info custom-edit-button">Ok</button>
+                  <button @click="editing=-1;teacer_name=''" class="button is-danger custom-edit-button">Cancel</button>
+                  <span v-show='!form_valid' class="help is-danger">Please enter a name</span>
+                </div>
+                  
+                <div key='2' v-else>
+                  {{ teacher.name }}
+                </div>
+              </transition>
             </td>
-            <td v-else class="table-name-row">{{ teacher.name }}</td>
-
             <td 
               style="text-align: center;
               color: #6ba3ff;
@@ -122,7 +134,7 @@
       removeTeacher(index) {
         //reset editing prop just in case editing in progress 
         this.editing = -1;
-        
+
         if(confirm('This will permanently delete this teacher. Continue?'))
           this.$store.teachers.splice(index, 1);
       },
@@ -196,18 +208,18 @@
 
   @keyframes slide-in {
     0% {
-      transform: translateY(20px);
+      transform: translateX(40px);
     }
     100% {
-      transform: translateY(0px);
+      transform: translateX(0px);
     }
   }
   @keyframes slide-out {
     0% {
-      transform: translateY(0px);
+      transform: translateX(0px);
     }
     100% {
-      transform: translateY(20px);
+      transform: translateX(40px);
     }
   }
 </style>
