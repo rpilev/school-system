@@ -5,11 +5,11 @@
         v-if='!showLessonAddForm'
         class="button is-info add-button"
         @click='toggleAddLesson'
-      >Add Lesson</a>
+      >Add Subject</a>
 
       <!-- Lesson add form -->
       <div v-else class="field">
-        <h2>Add Lesson</h2>
+        <h2>Add Subject</h2>
         <label class="label">Name</label>
         <div class="control">
           <input 
@@ -17,7 +17,7 @@
             v-model='lesson_name'
             @input='form_valid = true'
             type="text"
-            placeholder="Lesson Name"
+            placeholder="Subject Name"
           >
         </div>
         <p v-show='!form_valid' class="help is-danger">Please enter a name</p>

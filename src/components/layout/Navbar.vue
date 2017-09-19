@@ -22,7 +22,7 @@
             Students
           </router-link>
           <router-link to="/lessons" class="navbar-item"  active-class="active">
-            Lessons
+            Subjects
           </router-link>
           <router-link to="/grades" class="navbar-item"  active-class="active">
             Grades

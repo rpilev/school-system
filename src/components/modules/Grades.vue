@@ -1,5 +1,7 @@
 <template>
-  <div>Grades page</div>
+  <div>
+    <h2>Grade Students</h2>
+  </div>
 </template>
 
 <script>

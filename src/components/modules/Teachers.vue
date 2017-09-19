@@ -35,14 +35,14 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Lessons</th>
+            <th>Subjects</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>Name</th>
-            <th>Lessons</th>
+            <th>Subjects</th>
             <th>Actions</th>
           </tr>
         </tfoot>
@@ -80,8 +80,8 @@
               <router-link :to="'/teacher/' + index + '/lessons/'">
                 {{ teacher.lessons.length }} 
                 <!-- plural grammar -->
-                <span v-if='teacher.lessons.length == 1'>Lesson</span>
-                <span v-else='teacher.lessons.length == 1'>Lessons</span>
+                <span v-if='teacher.lessons.length == 1'>Subject</span>
+                <span v-else='teacher.lessons.length == 1'>Subjects</span>
               </router-link>
                
             </td>

@@ -6,7 +6,7 @@
     <h2>Teacher <i>{{ teacher_name }}</i></h2>
     <aside class="menu">
       <p class="menu-label">
-        Lessons
+        Subjects
       </p>
       <ul class="menu-list">
         <!-- List all lessons (if not null /deleted) -->
