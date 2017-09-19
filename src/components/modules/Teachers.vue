@@ -35,14 +35,14 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Students</th>
+            <th>Lessons</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>Name</th>
-            <th>Students</th>
+            <th>Lessons</th>
             <th>Actions</th>
           </tr>
         </tfoot>
@@ -75,7 +75,13 @@
               color: #6ba3ff;
               cursor: pointer;"
             >
-              4 Students
+              <router-link :to="'/teacher/' + index + '/lessons/'">
+                {{ teacher.lessons.length }} 
+                <!-- plural grammar -->
+                <span v-if='teacher.lessons.length == 1'>Lesson</span>
+                <span v-else='teacher.lessons.length == 1'>Lessons</span>
+              </router-link>
+               
             </td>
             <td 
               style="cursor: pointer;
@@ -126,7 +132,7 @@
 
         //add new teacher to store
 
-        this.$store.teachers.push({ name: this.teacher_name });
+        this.$store.teachers.push({ name: this.teacher_name, lessons: [] });
         this.teacher_name = '';
         this.showTeacherAddForm = false
         this.form_valid = true;
@@ -168,6 +174,10 @@
 </script>
 
 <style scoped>
+  a {
+    text-decoration: none !important;
+  }
+
   .label {
     text-align: left;
   }

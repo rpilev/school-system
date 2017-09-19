@@ -5,7 +5,11 @@ import Students from './components/modules/Students.vue';
 import Grades from './components/modules/Grades.vue';
 import Lessons from './components/modules/Lessons.vue';
 
+import TeacherLessons from './components/modules/sub-modules/TeacherLessons.vue';
+import LessonStudents from './components/modules/sub-modules/LessonStudents.vue';
+
 export const routes = [
+  /*main paths */
   {
     path: '/',
     component: Stats
@@ -25,5 +29,14 @@ export const routes = [
   {
     path: '/lessons',
     component: Lessons
+  },
+  /* sub-sections */
+  {
+    path: '/teacher/:id/lessons/',
+    component: TeacherLessons
+  },
+  {
+    path: '/lesson/:id/students/',
+    component: LessonStudents
   }
 ]

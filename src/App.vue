@@ -36,6 +36,10 @@ export default {
 $desktop: 650px;
 @import '../node_modules/bulma/bulma.sass';
 
+a {
+  text-decoration: none !important;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -54,19 +58,23 @@ h1, h2 {
   font-size: 32px;
   text-align: left;
 }
-
+/*
 ul {
   list-style-type: none;
   padding: 0;
-}
+}*/
 
-li {
+/*li {
   display: inline-block;
   margin: 0 10px;
-}
+}*/
 
 a {
   color: #42b983;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
 }
 
 .main-module {
