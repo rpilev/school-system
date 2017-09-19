@@ -47,11 +47,13 @@
           </tr>
         </tfoot>
         <transition-group name='slide' tag="tbody">
-          <tr :key="index" v-for='(teacher, index) in $store.teachers'>
+          <!-- check if index is null for deleted items -->
+          <tr :key="index" v-for='(teacher, index) in $store.teachers' v-if='teacher != null'>
             
-            <!-- If the current index is being edited show an input field, otherwise just the name -->
+            
             <td class="table-name-row">
               <transition name='slide' mode='out-in'>
+                <!-- If the current index is being edited show an input field, otherwise just the name -->
                 <div key='1' v-if='editing == index'>
                   <input  
                    :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
@@ -104,6 +106,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
   export default {
     data() {
       return {
@@ -141,8 +144,11 @@
         //reset editing prop just in case editing in progress 
         this.editing = -1;
 
-        if(confirm('This will permanently delete this teacher. Continue?'))
-          this.$store.teachers.splice(index, 1);
+        //just set the index value to null to preserve the index numbers of the other elements
+        if(confirm('This will permanently delete this teacher. Continue?')){
+          // need to use the Vue.set method so Vue detects the change
+          Vue.set(this.$store.teachers, index, null);
+        }
       },
       editTeacher(index, teacher) {
         // Hide the add teacher from just in case its open

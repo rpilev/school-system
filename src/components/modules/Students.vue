@@ -45,11 +45,13 @@
           </tr>
         </tfoot>
         <transition-group name='slide' tag="tbody">
-          <tr :key="index" v-for='(student, index) in $store.students'>
+          <!-- check if index is null for deleted items -->
+          <tr :key="index" v-for='(student, index) in $store.students' v-if='student != null'>
             
-            <!-- If the current index is being edited show an input field, otherwise just the name -->
+            
             <td class="table-name-row">
               <transition name='slide' mode='out-in'>
+                <!-- If the current index is being edited show an input field, otherwise just the name -->
                 <div key='1' v-if='editing == index'>
                   <input  
                    :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
@@ -89,6 +91,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
   export default {
     data() {
       return {
@@ -126,8 +129,26 @@
         //reset editing prop just in case editing in progress 
         this.editing = -1;
 
-        if(confirm('This will permanently delete this student. Continue?'))
-          this.$store.students.splice(index, 1);
+        //just set the index value to null to preserve the index numbers of the other elements
+        if(confirm('This will permanently delete this student. Continue?')){
+          // need to use the Vue.set method so Vue detects the change
+          Vue.set(this.$store.students, index, null);
+        }else{
+          return;
+        }
+
+        //remove associations to any lessons
+        this.$store.lessons.forEach(function(element){
+          //check for deleted lessons and ignore them
+          if (element == null){
+            return;
+          }
+          if(element.students.indexOf(index) > -1){
+
+            let index_to_remove = element.students.indexOf(index);
+            element.students.splice(index_to_remove, 1);
+          }
+        });
       },
       editStudent(index, student) {
         // Hide the add student from just in case its open

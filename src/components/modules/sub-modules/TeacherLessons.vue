@@ -9,8 +9,8 @@
         Lessons
       </p>
       <ul class="menu-list">
-        <!-- List all available lessons -->
-        <li v-for="(lesson, index) in all_lessons">
+        <!-- List all lessons (if not null /deleted) -->
+        <li v-for="(lesson, index) in all_lessons" v-if="lesson != null">
           <label class="checkbox">
             <!-- v-model the selection directly to the store attr -->
             <input 

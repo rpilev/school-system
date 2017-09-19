@@ -9,10 +9,10 @@
         Lessons
       </p>
       <ul class="menu-list">
-        <!-- List all available lessons -->
-        <li v-for="(student, index) in all_students">
+        <!-- List all students (if not null /deleted) -->
+        <li v-for="(student, index) in all_students" v-if='student != null'>
           <label class="checkbox">
-            <input @click='logit'
+            <input
               v-model='$store.lessons[lesson_id].students'
               :value="index"
               type="checkbox"
@@ -33,11 +33,6 @@
         lesson_name: this.$store.lessons[this.$route.params.id].name,
         
         all_students: this.$store.students
-      }
-    },
-    methods: {
-      logit(){
-        console.log(this.$store.lessons[this.lesson_id].students);
       }
     }
   }

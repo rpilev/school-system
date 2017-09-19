@@ -47,11 +47,13 @@
           </tr>
         </tfoot>
         <transition-group name='slide' tag="tbody">
-          <tr :key="index" v-for='(lesson, index) in $store.lessons'>
+          <!-- check if index is null for deleted items -->
+          <tr :key="index" v-for='(lesson, index) in $store.lessons' v-if='lesson != null'>
             
-            <!-- If the current index is being edited show an input field, otherwise just the name -->
+            
             <td class="table-name-row">
               <transition name='slide' mode='out-in'>
+                <!-- If the current index is being edited show an input field, otherwise just the name -->
                 <div key='1' v-if='editing == index'>
                   <input  
                    :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
@@ -103,6 +105,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
   export default {
     data() {
       return {
@@ -140,8 +143,24 @@
         //reset editing prop just in case editing in progress 
         this.editing = -1;
 
-        if(confirm('This will permanently delete this lesson. Continue?'))
-          this.$store.lessons.splice(index, 1);
+        //just set the index value to null to preserve the index numbers of the other elements
+        if(confirm('This will permanently delete this lesson. Continue?')){
+          // need to use the Vue.set method so Vue detects the change
+          Vue.set(this.$store.lessons, index, null);
+        }
+
+        //remove associations to any teachers
+        this.$store.teachers.forEach(function(element){
+          //check for deleted lessons and ignore them
+          if (element == null){
+            return;
+          }
+          if(element.lessons.indexOf(index) > -1){
+            let index_to_remove = element.lessons.indexOf(index);
+            element.lessons.splice(index_to_remove, 1);
+          }
+
+        });
       },
       editLesson(index, lesson) {
         // Hide the add lesson from just in case its open
