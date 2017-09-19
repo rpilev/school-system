@@ -22,7 +22,8 @@ new Vue({
     store: {
       teachers: [],
       students: [],
-      lessons: []
+      lessons: [],
+      grades: []
     }
   },
   render: h => h(App)

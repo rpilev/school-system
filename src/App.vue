@@ -145,4 +145,52 @@ table thead,  table tfoot {
     word-break: break-all;
   }
 }
+
+/* Transition animations */
+  .fade-enter {
+    opacity: 0;
+  }
+  .fade-enter-active {
+    transition: opacity 0.3s;
+  }
+  .fade-leave {
+    opacity: 1;
+  }
+  .fade-leave-active {
+    transition: opacity 0.3s;
+    opacity: 0;
+  }
+
+  .slide-enter {
+    opacity: 0;
+  }
+  .slide-enter-active {
+    animation: slide-in 0.3s ease-in-out forwards;
+    transition: opacity 0.3s;
+  }
+  .slide-leave {
+    opacity: 1;
+  }
+  .slide-leave-active {
+    animation: slide-out 0.3s ease-in-out forwards;
+    transition: opacity 0.3s;
+    opacity: 0;
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(40px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0px);
+    }
+    100% {
+      transform: translateX(40px);
+    }
+  }
 </style>
