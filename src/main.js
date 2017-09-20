@@ -22,51 +22,176 @@ new Vue({
     store: {
       teachers: [
         {
-          name: 'Teacher 1',
-          lessons: [1, 2]
+          name: 'Sandra',
+          lessons: [0, 1, 2]
         },
         {
-          name: 'Teacher 2',
+          name: 'Karl',
           lessons: [2, 3]
         },
         {
-          name: 'Teacher 3',
-          lessons: [3, 4]
+          name: 'Mary',
+          lessons: [1, 3, 4]
+        },
+        {
+          name: 'John',
+          lessons: [4]
         }
       ],
       students: [
         {
-          name: 'Student 1'
+          name: 'Kate'
         },
         {
-          name: 'Student 2'
+          name: 'Britney'
         },
         {
-          name: 'Student 3'
+          name: 'Joe'
         },
         {
-          name: 'Student 4'
+          name: 'Raul'
+        },
+        {
+          name: 'Hendrik'
+        },
+        {
+          name: 'Richard'
+        },
+        {
+          name: 'Michelle'
+        },
+        {
+          name: 'Joanna'
         }
       ],
       lessons: [
         {
-          name: 'lesson 1',
-          students: [1, 2]
+          name: 'German',
+          students: [0, 1, 2, 3, 4]
         },
         {
-          name: 'lesson 2',
-          students: [3, 4]
+          name: 'Math',
+          students: [0, 3, 4, 6, 8]
         },
         {
-          name: 'lesson 3',
-          students: [2, 3]
-        },
-        {
-          name: 'lesson 4',
-          students: [1, 2]
+          name: 'Biology',
+          students: [2, 3, 8]
         }
       ],
-      grades: []
+      grades: [
+        {
+          lesson_id: 1,
+          student_id: 3,
+          teacher_id: 0,
+          date: '2017-09-20',
+          comment: "This is a comment",
+          grade: 2
+        },
+        {
+          lesson_id: 0,
+          student_id: 3,
+          teacher_id: 0,
+          date: '2017-09-20',
+          comment: ".",
+          grade: 4
+        },
+        {
+          lesson_id: 1,
+          student_id: 4,
+          teacher_id: 0,
+          date: '2017-08-07',
+          comment: "...",
+          grade: 0
+        },
+        {
+          lesson_id: 1,
+          student_id: 6,
+          teacher_id: 2,
+          date: '2017-08-09',
+          comment: "",
+          grade: 0
+        },
+        {
+          lesson_id: 1,
+          student_id: 6,
+          teacher_id: 0,
+          date: '2017-08-09',
+          comment: "",
+          grade: 5
+        },
+        {
+          lesson_id: 1,
+          student_id: 6,
+          teacher_id: 2,
+          date: '2017-08-06',
+          comment: "Very good",
+          grade: 5
+        },
+        {
+          lesson_id: 1,
+          student_id: 6,
+          teacher_id: 0,
+          date: '2017-08-17',
+          comment: "",
+          grade: 4
+        },
+        {
+          lesson_id: 1,
+          student_id: 6,
+          teacher_id: 2,
+          date: '2017-08-15',
+          comment: "",
+          grade: 1
+        },
+        {
+          lesson_id: 1,
+          student_id: 0,
+          teacher_id: 3,
+          date: '2017-08-13',
+          comment: "",
+          grade: 4
+        },
+        {
+          lesson_id: 1,
+          student_id: 0,
+          teacher_id: 0,
+          date: '2017-08-11',
+          comment: "",
+          grade: 3
+        },
+        {
+          lesson_id: 1,
+          student_id: 3,
+          teacher_id: 0,
+          date: '2017-08-10',
+          comment: "Did not do homework",
+          grade: 0
+        },
+        {
+          lesson_id: 2,
+          student_id: 2,
+          teacher_id: 1,
+          date: '2017-08-10',
+          comment: "",
+          grade: 5
+        },
+        {
+          lesson_id: 0,
+          student_id: 1,
+          teacher_id: 0,
+          date: '2017-08-10',
+          comment: "",
+          grade: 5
+        },
+        {
+          lesson_id: 1,
+          student_id: 0,
+          teacher_id: 0,
+          date: '2017-08-17',
+          comment: "",
+          grade: 3
+        }
+      ]
     }
   },
   render: h => h(App)
