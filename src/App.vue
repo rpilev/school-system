@@ -5,7 +5,9 @@
     <app-nav-bar></app-nav-bar>
     <div class="section main-module">
       <div class="notification">
-        <router-view></router-view>
+        <transition name='fade' mode='out-in'>
+          <router-view></router-view>
+        </transition>
       </div>
     </div>
     <app-footer></app-footer>
@@ -167,13 +169,13 @@ table thead,  table tfoot {
     opacity: 0;
   }
   .fade-enter-active {
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
   }
   .fade-leave {
     opacity: 1;
   }
   .fade-leave-active {
-    transition: opacity 0.3s;
+    transition: opacity 0.2s;
     opacity: 0;
   }
 
