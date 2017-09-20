@@ -19,3 +19,7 @@ Technologies used include:
   * vue-stash
 
 * Bulme CSS
+
+**Live preview**:
+
+[http://drshpilev.com/dev/demos/vuejs/school_system/](http://drshpilev.com/dev/demos/vuejs/school_system/)
