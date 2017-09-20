@@ -6,13 +6,14 @@
     <h4 class="subtitle is-4">All Grades</h4>
     <label class="label">Search</label>
     <div class="control">
-      <input type="radio" value="lesson" v-model="search_type"> <span>Subject</span>
-      <input type="radio" value="student" v-model="search_type"> <span>Student</span>
-      <input type="radio" value="teacher" v-model="search_type"> <span>Teacher</span>
-      <input type="radio" value="date" v-model="search_type"> <span>Date</span>
+      <input type="radio" value="lesson" @click='search=""' v-model="search_type"> <span>Subject</span>
+      <input type="radio" value="student" @click='search=""' v-model="search_type"> <span>Student</span>
+      <input type="radio" value="teacher" @click='search=""' v-model="search_type"> <span>Teacher</span>
+      <input type="radio" value="date" @click='search=""' v-model="search_type"> <span>Date</span>
     </div>
     <div class="control" style="margin-bottom:9px;margin-top:2px;">
-      <input type="text" v-model='search'>
+      <input type='date' v-if='search_type == "date"' v-model='search'>
+      <input type='text' v-else v-model='search'>
     </div>
     <table id="myTable" class="table">
       <thead>
@@ -71,6 +72,7 @@ import Vue from 'vue';
         search: '',
         sort_type: 'lesson_name',
         sort_type_reverse: false,
+        searchbox_type: 'text',
 
         grades: this.$store.grades,
         students: this.$store.students,
@@ -140,6 +142,9 @@ import Vue from 'vue';
               break;
             case 'teacher':
               to_search = teacher_name;
+              break;
+            case 'date':
+              to_search = element.date;
               break;
           }
 
