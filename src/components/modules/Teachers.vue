@@ -51,7 +51,7 @@
           <tr :key="index" v-for='(teacher, index) in $store.teachers' v-if='teacher != null'>
             
             
-            <td class="table-name-row">
+            <td class="table-restricted-size">
               <transition name='slide' mode='out-in'>
                 <!-- If the current index is being edited show an input field, otherwise just the name -->
                 <div key='1' v-if='editing == index'>
@@ -183,7 +183,6 @@ import Vue from 'vue';
   a {
     text-decoration: none !important;
   }
-
   .label {
     text-align: left;
   }

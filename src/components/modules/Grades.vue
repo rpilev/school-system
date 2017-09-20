@@ -106,7 +106,10 @@
         </div>
 
         <!-- Grade selection -->
-        <button @click='submitGrade' class="button is-info">Grade</button>
+        <div style="text-align:center;">
+          <button @click='submitGrade' class="button is-info">Grade</button>
+        </div>
+        
       </div>
     </transition>
   </div>
@@ -152,7 +155,7 @@
 
         this.selected_lesson = -1;
         this.selected_student = -1;
-        this.selected_teacherv = -1;
+        this.selected_teacher = -1;
         this.selected_date = 1;
         this.entered_comment = '';
         this.selected_grade = -1;

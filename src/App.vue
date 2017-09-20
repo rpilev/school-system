@@ -116,11 +116,25 @@ table thead,  table tfoot {
 }
 
 @media screen and (max-width: 750px) {
+
+  h2, h4 {
+    text-align: center;
+  }
+  table {
+    margin: 0 auto;
+  }
+  .control {
+    text-align: center;
+  }
+  .label {
+    text-align: center;
+  }
+
   .section.main-module {
     padding: 0px;
   }
   .notification {
-    padding: 1.25rem 0.8rem 1.25rem 0.8rem;
+    padding: 0;
   }
   #app {
     padding: 60px 0px 0 6px;
@@ -140,7 +154,9 @@ table thead,  table tfoot {
 }
 
 @media screen and (max-width: 450px) {
-  .table-name-row {
+  
+
+  .table-restricted-size {
     max-width: 93px;
     word-break: break-all;
   }
