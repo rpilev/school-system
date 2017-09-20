@@ -40,7 +40,7 @@
       <!-- animation for deleting -->
       <transition-group name='slide' tag="tbody">
         <!-- list all grades in formatted from -->
-        <tr :key="index" v-for='(grade, index) in filteredGrades' v-if="grade != null">
+        <tr :key="index" v-for='(grade, index) in filteredGrades' v-if="grade !== 'null'">
           <td class="table-restricted-size">{{ grade.lesson_name }}</td>
           <td class="table-restricted-size">{{ grade.student_name }}</td>
           <td class="table-restricted-size">{{ grade.teacher_name }}</td>
@@ -48,7 +48,7 @@
           <td class="table-restricted-size">{{ grade.comment }}</td>
           <td class="table-restricted-size">{{ grade.date }}</td>
           <td class="table-restricted-size" style="text-align: center;">
-            <span @click = 'removeGrade(index)'>
+            <span @click = 'removeGrade(grade.index)'>
                 <icon style='color:red;cursor:pointer;' name='trash'></icon>
             </span>
           </td>
@@ -63,8 +63,7 @@ import Vue from 'vue';
   export default {
     data() {
       return {
-        grades: this.$store.grades,
-
+        
         inquiry: false,
         inquiry_result: [],
 
@@ -73,6 +72,7 @@ import Vue from 'vue';
         sort_type: 'lesson_name',
         sort_type_reverse: false,
 
+        grades: this.$store.grades,
         students: this.$store.students,
         lessons: this.$store.lessons,
         teachers: this.$store.teachers
@@ -113,11 +113,20 @@ import Vue from 'vue';
         var self = this;
 
         //reconstruct the array with filtered data
-        this.grades.forEach(function(element, context = self){
+        this.grades.forEach(function(element, index){
+
+          //check for null values (deleted)
+          if(element == null){
+            //keep it null
+            result.push('null');
+
+            return;
+          }
 
           let lesson_name = self.lessons[element.lesson_id].name;
           let student_name = self.students[element.student_id].name;
           let teacher_name = self.teachers[element.teacher_id].name;
+
 
           //filter based on search
           let to_search = '';
@@ -138,7 +147,9 @@ import Vue from 'vue';
             return;
           }
 
+          //retain index for deleting as prop "original_index"
           result.push({
+            index: index,
             lesson_name: lesson_name,
             student_name: student_name,
             teacher_name: teacher_name,
