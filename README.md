@@ -6,8 +6,11 @@ Features include:
 
 * Managing teachers, students and lessons
 * Associating teachers with students
-* Grading students based on lessons
+* Associating students with subjects
+* Grading students
 * View statistics
+  * Search for grades
+  * Sort
 
 Technologies used include:
 
