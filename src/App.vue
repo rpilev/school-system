@@ -165,14 +165,14 @@ table thead,  table tfoot {
     opacity: 0;
   }
   .slide-enter-active {
-    animation: slide-in 0.3s ease-in-out forwards;
+    animation: slide-in 0.3s cubic-bezier(.68,-0.55,.24,1.97) forwards;
     transition: opacity 0.3s;
   }
   .slide-leave {
     opacity: 1;
   }
   .slide-leave-active {
-    animation: slide-out 0.3s ease-in-out forwards;
+    animation: slide-out 0.3s cubic-bezier(.68,-0.55,.24,1.97) forwards;
     transition: opacity 0.3s;
     opacity: 0;
   }
