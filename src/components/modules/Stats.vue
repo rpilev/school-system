@@ -6,10 +6,18 @@
     <h4 class="subtitle is-4">All Grades</h4>
     <label class="label">Search</label>
     <div class="control">
-      <input type="radio" value="lesson" @click='search=""' v-model="search_type"> <span>Subject</span>
-      <input type="radio" value="student" @click='search=""' v-model="search_type"> <span>Student</span>
-      <input type="radio" value="teacher" @click='search=""' v-model="search_type"> <span>Teacher</span>
-      <input type="radio" value="date" @click='search=""' v-model="search_type"> <span>Date</span>
+      <label>
+        <input type="radio" value="lesson" @click='search=""' v-model="search_type"> Subject
+      </label>
+      <label>
+        <input type="radio" value="student" @click='search=""' v-model="search_type"> Student
+      </label>
+      <label>
+        <input type="radio" value="teacher" @click='search=""' v-model="search_type"> Teacher
+      </label>
+      <label>
+        <input type="radio" value="date" @click='search=""' v-model="search_type"> Date
+      </label>
     </div>
     <div class="control" style="margin-bottom:9px;margin-top:2px;">
       <input type='date' v-if='search_type == "date"' v-model='search'>
