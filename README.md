@@ -14,9 +14,10 @@ Features include:
 
 Technologies used include:
 
-* Vue.js
+* Vue.js (vue-cli - webpack-simple)
   * vue-router
   * vue-stash
+  * vue-awesome
 
 * Bulme CSS
 
