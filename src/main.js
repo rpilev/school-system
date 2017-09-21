@@ -27,15 +27,15 @@ new Vue({
         },
         {
           name: 'Karl',
-          lessons: [2, 3]
+          lessons: [0, 2]
         },
         {
           name: 'Mary',
-          lessons: [1, 3, 4]
+          lessons: [1, 2]
         },
         {
           name: 'John',
-          lessons: [4]
+          lessons: [2]
         }
       ],
       students: [
@@ -71,11 +71,11 @@ new Vue({
         },
         {
           name: 'Math',
-          students: [0, 3, 4, 6, 8]
+          students: [0, 3, 4, 6, 7]
         },
         {
           name: 'Biology',
-          students: [2, 3, 8]
+          students: [2, 3, 7]
         }
       ],
       grades: [
