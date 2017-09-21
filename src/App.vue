@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img id='main-logo-mobile' class="navbar-item" rel='' src="./assets/logo.png">
+    <img id='main-logo-mobile' class="navbar-item" rel='' :src="logoSource">
     <h1 class="main-title">School System</h1>
     <app-nav-bar></app-nav-bar>
     <div class="section main-module">
@@ -26,7 +26,7 @@ export default {
   name: 'app',
   data () {
     return {
-
+      logoSource: require('./assets/logo.png'),
     }
   }
 }
