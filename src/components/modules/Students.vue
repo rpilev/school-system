@@ -45,8 +45,8 @@
           </tr>
         </tfoot>
         <transition-group name='slide' tag="tbody">
-          <!-- check if index is null for deleted items -->
-          <tr :key="index" v-for='(student, index) in $store.students' v-if='student != null'>
+          <!-- check if index is deleted for deleted items -->
+          <tr :key="index" v-for='(student, index) in $store.students' v-if='student != "deleted"'>
             
             
             <td class="table-restricted-size">
@@ -129,18 +129,11 @@ import Vue from 'vue';
         //reset editing prop just in case editing in progress 
         this.editing = -1;
 
-        //just set the index value to null to preserve the index numbers of the other elements
-        if(confirm('This will permanently delete this student. Continue?')){
-          // need to use the Vue.set method so Vue detects the change
-          Vue.set(this.$store.students, index, null);
-        }else{
-          return;
-        }
-
         //remove associations to any lessons
         this.$store.lessons.forEach(function(element){
+
           //check for deleted lessons and ignore them
-          if (element == null){
+          if (element == "deleted"){
             return;
           }
           if(element.students.indexOf(index) > -1){
@@ -149,6 +142,13 @@ import Vue from 'vue';
             element.students.splice(index_to_remove, 1);
           }
         });
+        //just set the index value to 'deleted' to preserve the index numbers of the other elements
+        if(confirm('This will permanently delete this student. Continue?')){
+          // need to use the Vue.set method so Vue detects the change
+          Vue.set(this.$store.students, index, 'deleted');
+        }else{
+          return;
+        }
       },
       editStudent(index, student) {
         // Hide the add student from just in case its open

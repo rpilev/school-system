@@ -47,8 +47,8 @@
           </tr>
         </tfoot>
         <transition-group name='slide' tag="tbody">
-          <!-- check if index is null for deleted items -->
-          <tr :key="index" v-for='(teacher, index) in $store.teachers' v-if='teacher != null'>
+          <!-- check if index is deleted for deleted items -->
+          <tr :key="index" v-for='(teacher, index) in $store.teachers' v-if='teacher != "deleted"'>
             
             
             <td class="table-restricted-size">
@@ -144,11 +144,12 @@ import Vue from 'vue';
         //reset editing prop just in case editing in progress 
         this.editing = -1;
 
-        //just set the index value to null to preserve the index numbers of the other elements
+        //just set the index value to 'deleted' to preserve the index numbers of the other elements
         if(confirm('This will permanently delete this teacher. Continue?')){
           // need to use the Vue.set method so Vue detects the change
-          Vue.set(this.$store.teachers, index, null);
+          Vue.set(this.$store.teachers, index, 'deleted');
         }
+        console.log(this.$store.teachers);
       },
       editTeacher(index, teacher) {
         // Hide the add teacher from just in case its open

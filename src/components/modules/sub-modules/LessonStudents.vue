@@ -10,7 +10,7 @@
       </p>
       <ul class="menu-list">
         <!-- List all students (if not null /deleted) -->
-        <li v-for="(student, index) in all_students" v-if='student != null'>
+        <li v-for="(student, index) in all_students" v-if='student != "deleted"'>
           <label class="checkbox">
             <input
               v-model='$store.lessons[lesson_id].students'

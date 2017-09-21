@@ -14,7 +14,7 @@
               <option disabled selected value></option>
               <option 
                 v-for='(student, index) in students'
-                v-if='student != null'
+                v-if='student != "deleted"'
                 :value='index'
               >
                 {{ student.name }}

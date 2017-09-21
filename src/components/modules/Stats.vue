@@ -49,7 +49,7 @@
       <!-- animation for deleting -->
       <transition-group name='slide' tag="tbody">
         <!-- list all grades in formatted from -->
-        <tr :key="index" v-for='(grade, index) in filteredGrades' v-if="grade !== 'null'">
+        <tr :key="index" v-for='(grade, index) in filteredGrades' v-if="grade !== 'deleted'">
           <td class="table-restricted-size">{{ grade.lesson_name }}</td>
           <td class="table-restricted-size">{{ grade.student_name }}</td>
           <td class="table-restricted-size">{{ grade.teacher_name }}</td>
@@ -92,7 +92,7 @@ import Vue from 'vue';
       removeGrade(index) {
         if(confirm('This will permanently delete this lesson. Continue?')){
           // need to use the Vue.set method so Vue detects the change
-          Vue.set(this.$store.grades, index, null);
+          Vue.set(this.$store.grades, index, 'deleted');
         }
       }, 
       dynamicSort(property) {
@@ -124,18 +124,35 @@ import Vue from 'vue';
 
         //reconstruct the array with filtered data
         this.grades.forEach(function(element, index){
-
           //check for null values (deleted)
-          if(element == null){
+          if(element == 'deleted'){
             //keep it null
-            result.push('null');
+            result.push('deleted');
 
             return;
           }
 
-          let lesson_name = self.lessons[element.lesson_id].name;
-          let student_name = self.students[element.student_id].name;
-          let teacher_name = self.teachers[element.teacher_id].name;
+          //check if lesson/student/teacher in the given grade has been deleted
+          let lesson_name = '';
+          let student_name = '';
+          let teacher_name = '';
+
+          if(self.lessons[element.lesson_id] == 'deleted'){
+            lesson_name = "**Deleted lesson**"
+          }else{
+            lesson_name = self.lessons[element.lesson_id].name;
+          }
+          if(self.students[element.student_id] == 'deleted'){
+            student_name = "**Deleted student**"
+          }else{
+            student_name = self.students[element.student_id].name;
+          }
+          if(self.teachers[element.teacher_id] == 'deleted'){
+            teacher_name = '**Deleted teacher**'
+          }else{
+            teacher_name = self.teachers[element.teacher_id].name;
+          }
+          
 
 
           //filter based on search
