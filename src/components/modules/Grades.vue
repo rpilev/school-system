@@ -34,7 +34,7 @@
               <!-- v-if igores deleted lessons and lessons that are not associated with the perviously selected student -->
               <option 
                 v-for='(lesson, index) in lessons'
-                v-if='lesson != null && $store.lessons[index].students.indexOf(selected_student) > -1'
+                v-if='lesson != "deleted" && $store.lessons[index].students.indexOf(selected_student) > -1'
                 :value='index'
               >
                 {{ lesson.name }}
@@ -53,7 +53,7 @@
               <option disabled selected value></option>
               <option
                 v-for='(teacher, index) in teachers'
-                v-if='teacher != null && $store.teachers[index].lessons.indexOf(selected_lesson) > -1'
+                v-if='teacher != "deleted" && $store.teachers[index].lessons.indexOf(selected_lesson) > -1'
                 :value='index'
               >
                 {{ teacher.name }}
