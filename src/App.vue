@@ -104,6 +104,11 @@ table thead,  table tfoot {
   word-break: break-all;
 }
 
+svg {
+  height: 19px;
+  width: 33px;
+}
+
 /* MOBILE SUPPORT */
 
 .button.navbar-burger {
