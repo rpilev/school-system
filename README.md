@@ -23,4 +23,4 @@ Technologies used include:
 
 **Live preview**:
 
-[http://drshpilev.com/dev/demos/vuejs/school_system/](http://drshpilev.com/dev/demos/vuejs/school_system/)
+[http://drshpilev.com/dev/demos/vuejs/school_system/](http://school-system.surge.sh/)
