@@ -13,7 +13,7 @@ This is a front-end demo of a school management system.
 
 ## Getting Started
 
-###Prerequisites
+### Prerequisites
 
 Requirements to install and test this application:
 
@@ -44,7 +44,7 @@ If no other development servers are currently running on the local machine then 
 
 [http://localhost:8080](http://localhost:8080)
 
-##Built With
+## Built With
 
 * [Vue.js](https://github.com/vuejs/vue) ([vue-cli - webpack-simple](https://github.com/vuejs-templates/webpack-simple))
   * [vue-router](https://github.com/vuejs/vue-router)
@@ -59,7 +59,7 @@ If no other development servers are currently running on the local machine then 
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
-##External links
+## External links
 
 Deployed preview available at:
 [http://school-system.surge.sh/](http://school-system.surge.sh/)
