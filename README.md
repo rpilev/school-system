@@ -50,14 +50,14 @@ If no other development servers are currently running on the local machine then 
   * [vue-router](https://github.com/vuejs/vue-router)
   * [vue-stash](https://github.com/cklmercer/vue-stash)
   * [vue-awesome](https://github.com/Justineo/vue-awesome)
-* [Bulma CSS] (https://github.com/jgthms/bulma)
+* [Bulma](https://github.com/jgthms/bulma)
 
 ## Authors
 * Raul Špilev
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/rpilev/school-system/blob/master/LICENSE) file for details
 
 ## External links
 
