@@ -3,25 +3,24 @@
     <h2>Statistics</h2>
     <br>
 
-    <h4 class="subtitle is-4">All Grades</h4>
-    <label class="label">Search</label>
+    <h4 class="subtitle is-4">Search</h4>
     <div class="control">
-      <label>
-        <input type="radio" value="lesson" @click='search=""' v-model="search_type"> Subject
+      <label class="tag is-success custom-tag">
+        <input class="search-box" type="radio" value="lesson" @click='search=""' v-model="search_type"> Subject
       </label>
-      <label>
-        <input type="radio" value="student" @click='search=""' v-model="search_type"> Student
+      <label class="tag is-success custom-tag">
+        <input class="search-box" type="radio" value="student" @click='search=""' v-model="search_type"> Student
       </label>
-      <label>
-        <input type="radio" value="teacher" @click='search=""' v-model="search_type"> Teacher
+      <label class="tag is-success custom-tag">
+        <input class="search-box" type="radio" value="teacher" @click='search=""' v-model="search_type"> Teacher
       </label>
-      <label>
-        <input type="radio" value="date" @click='search=""' v-model="search_type"> Date
+      <label class="tag is-success custom-tag">
+        <input class="search-box" type="radio" value="date" @click='search=""' v-model="search_type"> Date
       </label>
     </div>
     <div class="control" style="margin-bottom:9px;margin-top:2px;">
-      <input type='date' v-if='search_type == "date"' v-model='search'>
-      <input type='text' v-else v-model='search'>
+      <input class="search-box" type='date' v-if='search_type == "date"' v-model='search'>
+      <input class="search-box" type='text' v-else v-model='search'>
     </div>
     <table id="myTable" class="table">
       <thead>
@@ -212,4 +211,31 @@ import Vue from 'vue';
   table th {
     cursor: pointer;
   }
+
+  label {
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 16px;
+    color: #007001 !important;
+  }
+
+  input[type="radio"] {
+    margin: 4px;
+  }
+
+  .custom-tag{
+    background: #b4e391;
+    background: -moz-linear-gradient(top, #b4e391 0%, #57d82f 50%, #b4e391 100%);
+    background: -webkit-linear-gradient(top, #b4e391 0%,#57d82f 50%,#b4e391 100%);
+    background: linear-gradient(to bottom, #b4e391 0%,#57d82f 50%,#b4e391 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=0 );
+  }
+
+  .search-box{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    height: 33px;
+    padding: 6px;
+  }
+
 </style>

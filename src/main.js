@@ -58,7 +58,7 @@ new Vue({
           name: 'Richard'
         },
         {
-          name: 'Michelle'
+          name: 'Mike'
         },
         {
           name: 'Joanna'

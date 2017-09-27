@@ -39,7 +39,7 @@
     data() {
       return {
         navbar_open: false,
-        logoSource: require('../../assets/logo.png'),
+        logoSource: require('../../assets/img/logo.png'),
         
         windowWidth: 0
       }
@@ -77,5 +77,6 @@
   }
   .navbar-item {
     text-align: center;
+    font-size: 20px;
   }
 </style>
