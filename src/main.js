@@ -9,6 +9,18 @@ Vue.use(VueStash);
 Vue.use(VueRouter);
 Vue.component('icon', Icon);
 
+//Global filters
+Vue.filter('capitalize', function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+)
+Vue.filter('removeLastCharacter', function (value) {
+    if (!value) return ''
+    return value.substring(0, value.length - 1);
+  }
+)
 
 //Global functions
 Vue.mixin({
@@ -68,6 +80,7 @@ Vue.mixin({
             if (element == "deleted"){
               return;
             }
+
             if(element[type + 's'].indexOf(index) > -1){
 
               let index_to_remove = element[type + 's'].indexOf(index);
