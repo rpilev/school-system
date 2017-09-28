@@ -5,9 +5,115 @@ import App from './App.vue';
 import { routes } from './routes';
 import Icon from 'vue-awesome';
 
-Vue.use(VueStash)
+Vue.use(VueStash);
 Vue.use(VueRouter);
-Vue.component('icon', Icon)
+Vue.component('icon', Icon);
+
+
+//Global functions
+Vue.mixin({
+  methods: {
+    // Toggels the adding form for a given unit
+    toggleAddUnit() {
+      // Stop editing and reset the unit_name and form_valid props just in case editing in progress
+      this.editing = -1;
+      this.unit_name = '';
+      this.form_valid = true;
+
+      this.showAddForm = true;
+    },
+    // Pushes a new unit into the store
+    addUnit() {
+
+      //validate form
+      if(this.unit_name=='') {
+        this.form_valid = false;
+        return;
+      }
+
+      // construct a new unit
+      let new_unit = { 
+        name: this.unit_name
+      }
+      // if this unit is associated with
+      // other units then include an empty
+      // array of them in to the object
+      new_unit[this.association] = [];
+
+      // Push to store
+      // Convert type name to plural for the store
+      this.$store[this.type + 's'].push(new_unit);
+
+      //Reset fields and close the form
+      this.unit_name = '';
+      this.showAddForm = false
+      this.form_valid = true;
+    },
+    // Removes the unit and its associations
+    // from the store
+    removeUnit(index) {
+      // Contain the type in this var with let
+      // for use in ananymous functions
+      let type = this.type
+
+      //reset editing prop just in case editing in progress 
+      this.editing = -1;
+
+      //remove associations to other units
+      //if they exist
+      if(this.association){
+        this.$store[this.association].forEach(function(element){
+
+            //check for deleted units and ignore them
+            if (element == "deleted"){
+              return;
+            }
+            if(element[type + 's'].indexOf(index) > -1){
+
+              let index_to_remove = element[type + 's'].indexOf(index);
+              element[type + 's'].splice(index_to_remove, 1);
+            }
+          }
+        );
+      }
+      
+      //just set the index value to 'deleted' to preserve the index numbers of the other elements
+      if(confirm('This will permanently delete this student. Continue?')){
+        // need to use the Vue.set method so Vue detects the change
+        Vue.set(this.$store[type + 's'], index, 'deleted');
+      }else{
+        return;
+      }
+    },
+    // Shows, validates and hides the edit input
+    editUnit(index, lesson) {
+      // Hide the add lesson form just in case its open
+      this.showAddForm = false;
+
+      //reset form_valid prop
+      this.form_valid = true;
+
+      this.editing = index;
+      this.unit_name = lesson;
+    },
+    // Carries out a submitted edit
+    submitEdit(index) {
+      //validate
+      if(this.unit_name == ''){
+        this.form_valid = false;
+        return;
+      }
+      //get the current unit
+      let current_unit = this.$store[this.type + 's'][index];
+      //replace the name prop
+      current_unit.name = this.unit_name;
+      //replace the old lesson obj in the store prop
+      this.$store[this.type + 's'][index] = current_unit;
+      //stop editing
+      this.editing = -1;
+    }
+  },
+});
 
 const router = new VueRouter({
   routes,

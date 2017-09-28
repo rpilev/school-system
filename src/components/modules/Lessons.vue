@@ -2,9 +2,9 @@
   <div>
     <transition name='fade' mode='out-in'>
       <a 
-        v-if='!showLessonAddForm'
+        v-if='!showAddForm'
         class="button is-info add-button"
-        @click='toggleAddLesson'
+        @click='toggleAddUnit'
       >Add Subject</a>
 
       <!-- Lesson add form -->
@@ -14,7 +14,7 @@
         <div class="control">
           <input 
             :class="{ input : true, 'is-danger' : !form_valid }"
-            v-model='lesson_name'
+            v-model='unit_name'
             @input='form_valid = true'
             type="text"
             placeholder="Subject Name"
@@ -23,8 +23,18 @@
         <p v-show='!form_valid' class="help is-danger">Please enter a name</p>
         <br>
         <div class="control">
-          <button @click='addLesson()' class="button is-primary">Submit</button>
-          <button @click='showLessonAddForm = false; lesson_name =""; form_valid = true;' class="button is-danger">Cancel</button>
+          <button 
+            @click='addUnit()'
+            class="button is-primary"
+          >
+          Submit</button>
+          <button 
+            @click='showAddForm = false;
+                    unit_name ="";
+                    form_valid = true;'
+            class="button is-danger"
+          >
+          Cancel</button>
         </div>
       </div>
     </transition>
@@ -48,7 +58,10 @@
         </tfoot>
         <transition-group name='slide' tag="tbody">
           <!-- check if index for deleted items -->
-          <tr :key="index" v-for='(lesson, index) in $store.lessons' v-if='lesson != "deleted"'>
+          <tr
+            :key="index"
+            v-for='(lesson, index) in $store.lessons'
+            v-if='lesson != "deleted"'>
             
             
             <td class="table-restricted-size">
@@ -59,7 +72,7 @@
                    :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
                    type="text"
                    name=""
-                   v-model="lesson_name"
+                   v-model="unit_name"
                    @input="form_valid = true"
                   >
                   <button @click="submitEdit(index)" class="button is-info custom-edit-button">Ok</button>
@@ -90,10 +103,10 @@
               font-weight: bolder;"
             >
               <!-- lesson name edit and delete buttons -->
-              <span @click = 'editLesson(index, lesson.name)'>
+              <span @click = 'editUnit(index, lesson.name)'>
                 <icon style='color:green;'  name='pencil'></icon>
               </span>
-              <span @click = 'removeLesson(index)'>
+              <span @click = 'removeUnit(index)'>
                 <icon style='color:red;'  name='trash'></icon>
               </span>
             </td>
@@ -109,83 +122,13 @@ import Vue from 'vue';
   export default {
     data() {
       return {
-        showLessonAddForm: false,
-        lesson_name: '',
+        type: 'lesson',
+        association: 'teachers',
+
+        showAddForm: false,
+        unit_name: '',
         form_valid: true,
         editing: -1
-      }
-    },
-    methods: {
-      toggleAddLesson() {
-        // Stop editing and reset the lesson_name and form_valid props just in case editing in progress
-        this.editing = -1;
-        this.lesson_name = '';
-        this.form_valid = true;
-
-        this.showLessonAddForm = true;
-      },
-      addLesson() {
-
-        //validate form
-        if(this.lesson_name=='') {
-          this.form_valid = false;
-          return;
-        }
-
-        //add new lesson to store
-
-        this.$store.lessons.push({ name: this.lesson_name, students: [] });
-        this.lesson_name = '';
-        this.showLessonAddForm = false
-        this.form_valid = true;
-      },
-      removeLesson(index) {
-        //reset editing prop just in case editing in progress 
-        this.editing = -1;
-        //remove associations to any teachers
-        this.$store.teachers.forEach(function(element){
-          //check for deleted lessons and ignore them
-
-          if (element == 'deleted'){
-            return;
-          }
-          if(element.lessons.indexOf(index) > -1){
-            let index_to_remove = element.lessons.indexOf(index);
-            element.lessons.splice(index_to_remove, 1);
-          }
-
-        });
-        //just set the index value to 'deleted' to preserve the index numbers of the other elements
-        if(confirm('This will permanently delete this lesson. Continue?')){
-          // need to use the Vue.set method so Vue detects the change
-          Vue.set(this.$store.lessons, index, 'deleted');
-        }
-        console.log(this.$store.lessons);
-      },
-      editLesson(index, lesson) {
-        // Hide the add lesson from just in case its open
-        this.showLessonAddForm = false;
-
-        //reset form_valid prop
-        this.form_valid = true;
-
-        this.editing = index;
-        this.lesson_name = lesson;
-      },
-      submitEdit(index) {
-        //validate
-        if(this.lesson_name == ''){
-          this.form_valid = false;
-          return;
-        }
-        //get the current lesson
-        let current_lesson = this.$store.lessons[index];
-        //replace the name prop
-        current_lesson.name = this.lesson_name;
-        //replace the old lesson obj in the store prop
-        this.$store.lessons[index] = current_lesson;
-        //stop editing
-        this.editing = -1;
       }
     }
   }

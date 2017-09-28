@@ -2,9 +2,9 @@
   <div>
     <transition name='fade' mode='out-in'>
       <a 
-        v-if='!showTeacherAddForm'
+        v-if='!showAddForm'
         class="button is-info add-button"
-        @click='toggleAddTeacher'
+        @click='toggleAddUnit'
       >Add Teacher</a>
 
       <!-- Teacher add form -->
@@ -14,7 +14,7 @@
         <div class="control">
           <input 
             :class="{ input : true, 'is-danger' : !form_valid }"
-            v-model='teacher_name'
+            v-model='unit_name'
             @input='form_valid = true'
             type="text"
             placeholder="Teacher Name"
@@ -23,8 +23,16 @@
         <p v-show='!form_valid' class="help is-danger">Please enter a name</p>
         <br>
         <div class="control">
-          <button @click='addTeacher()' class="button is-primary">Submit</button>
-          <button @click='showTeacherAddForm = false; teacher_name =""; form_valid = true;' class="button is-danger">Cancel</button>
+          <button 
+            @click='addUnit()'
+            class="button is-primary"
+          >Submit</button>
+          <button 
+            @click='showAddForm = false;
+                    unit_name ="";
+                    form_valid = true;'
+            class="button is-danger"
+          >Cancel</button>
         </div>
       </div>
     </transition>
@@ -48,8 +56,11 @@
         </tfoot>
         <transition-group name='slide' tag="tbody">
           <!-- check if index is deleted for deleted items -->
-          <tr :key="index" v-for='(teacher, index) in $store.teachers' v-if='teacher != "deleted"'>
-            
+          <tr 
+            :key="index"
+            v-for='(teacher, index) in $store.teachers'
+            v-if='teacher != "deleted"'
+          >
             
             <td class="table-restricted-size">
               <transition name='slide' mode='out-in'>
@@ -59,7 +70,7 @@
                    :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
                    type="text"
                    name=""
-                   v-model="teacher_name"
+                   v-model="unit_name"
                    @input="form_valid = true"
                   >
                   <button @click="submitEdit(index)" class="button is-info custom-edit-button">Ok</button>
@@ -91,10 +102,10 @@
               font-weight: bolder;"
             >
               <!-- teacher name edit and delete buttons -->
-              <span @click = 'editTeacher(index, teacher.name)'>
+              <span @click = 'editUnit(index, teacher.name)'>
                 <icon style='color:green;'  name='pencil'></icon>
               </span>
-              <span @click = 'removeTeacher(index)'>
+              <span @click = 'removeUnit(index)'>
                 <icon style='color:red;'  name='trash'></icon>
               </span>
             </td>
@@ -110,71 +121,13 @@ import Vue from 'vue';
   export default {
     data() {
       return {
-        showTeacherAddForm: false,
-        teacher_name: '',
+        type: 'teacher',
+        association: 'lessons',
+
+        showAddForm: false,
+        unit_name: '',
         form_valid: true,
         editing: -1
-      }
-    },
-    methods: {
-      toggleAddTeacher() {
-        // Stop editing and reset the teacher_name and form_valid props just in case editing in progress
-        this.editing = -1;
-        this.teacher_name = '';
-        this.form_valid = true;
-
-        this.showTeacherAddForm = true;
-      },
-      addTeacher() {
-
-        //validate form
-        if(this.teacher_name=='') {
-          this.form_valid = false;
-          return;
-        }
-
-        //add new teacher to store
-
-        this.$store.teachers.push({ name: this.teacher_name, lessons: [] });
-        this.teacher_name = '';
-        this.showTeacherAddForm = false
-        this.form_valid = true;
-      },
-      removeTeacher(index) {
-        //reset editing prop just in case editing in progress 
-        this.editing = -1;
-
-        //just set the index value to 'deleted' to preserve the index numbers of the other elements
-        if(confirm('This will permanently delete this teacher. Continue?')){
-          // need to use the Vue.set method so Vue detects the change
-          Vue.set(this.$store.teachers, index, 'deleted');
-        }
-        console.log(this.$store.teachers);
-      },
-      editTeacher(index, teacher) {
-        // Hide the add teacher from just in case its open
-        this.showTeacherAddForm = false;
-
-        //reset form_valid prop
-        this.form_valid = true;
-
-        this.editing = index;
-        this.teacher_name = teacher;
-      },
-      submitEdit(index) {
-        //validate
-        if(this.teacher_name == ''){
-          this.form_valid = false;
-          return;
-        }
-        //get the current teacher
-        let current_teacher = this.$store.teachers[index];
-        //replace the name prop
-        current_teacher.name = this.teacher_name;
-        //replace the old teacher obj in the store prop
-        this.$store.teachers[index] = current_teacher;
-        //stop editing
-        this.editing = -1;
       }
     }
   }

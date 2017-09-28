@@ -2,9 +2,9 @@
   <div>
     <transition name='fade' mode='out-in'>
       <a 
-        v-if='!showStudentAddForm'
+        v-if='!showAddForm'
         class="button is-info add-button"
-        @click='toggleAddStudent'
+        @click='toggleAddUnit'
       >Add Student</a>
 
       <!-- Student add form -->
@@ -14,7 +14,7 @@
         <div class="control">
           <input 
             :class="{ input : true, 'is-danger' : !form_valid }"
-            v-model='student_name'
+            v-model='unit_name'
             @input='form_valid = true'
             type="text"
             placeholder="Student Name"
@@ -23,8 +23,18 @@
         <p v-show='!form_valid' class="help is-danger">Please enter a name</p>
         <br>
         <div class="control">
-          <button @click='addStudent()' class="button is-primary">Submit</button>
-          <button @click='showStudentAddForm = false; student_name =""; form_valid = true;' class="button is-danger">Cancel</button>
+          <button
+            @click='addUnit()'
+            class="button is-primary"
+          >
+          Submit</button>
+          <button
+            @click='showAddForm = false;
+                    unit_name ="";
+                    form_valid = true;'
+            class="button is-danger"
+            >
+            Cancel</button>
         </div>
       </div>
     </transition>
@@ -46,7 +56,11 @@
         </tfoot>
         <transition-group name='slide' tag="tbody">
           <!-- check if index is deleted for deleted items -->
-          <tr :key="index" v-for='(student, index) in $store.students' v-if='student != "deleted"'>
+          <tr
+            :key="index"
+            v-for='(student, index) in $store.students'
+            v-if='student != "deleted"'
+          >
             
             
             <td class="table-restricted-size">
@@ -57,7 +71,7 @@
                    :class="{ 'edit-input input' : true, 'is-danger' : !form_valid }"
                    type="text"
                    name=""
-                   v-model="student_name"
+                   v-model="unit_name"
                    @input="form_valid = true"
                   >
                   <button @click="submitEdit(index)" class="button is-info custom-edit-button">Ok</button>
@@ -76,10 +90,10 @@
               font-weight: bolder;"
             >
               <!-- student name edit and delete buttons -->
-              <span @click = 'editStudent(index, student.name)'>
+              <span @click = 'editUnit(index, student.name)'>
                 <icon style='color:green;'  name='pencil'></icon>
               </span>
-              <span @click = 'removeStudent(index)'>
+              <span @click = 'removeUnit(index)'>
                 <icon style='color:red;'  name='trash'></icon>
               </span>
             </td>
@@ -95,85 +109,13 @@ import Vue from 'vue';
   export default {
     data() {
       return {
-        showStudentAddForm: false,
-        student_name: '',
+        type: 'student',
+        association: 'lessons',
+
+        showAddForm: false,
+        unit_name: '',
         form_valid: true,
         editing: -1
-      }
-    },
-    methods: {
-      toggleAddStudent() {
-        // Stop editing and reset the student_name and form_valid props just in case editing in progress
-        this.editing = -1;
-        this.student_name = '';
-        this.form_valid = true;
-
-        this.showStudentAddForm = true;
-      },
-      addStudent() {
-
-        //validate form
-        if(this.student_name=='') {
-          this.form_valid = false;
-          return;
-        }
-
-        //add new student to store
-
-        this.$store.students.push({ name: this.student_name });
-        this.student_name = '';
-        this.showStudentAddForm = false
-        this.form_valid = true;
-      },
-      removeStudent(index) {
-        //reset editing prop just in case editing in progress 
-        this.editing = -1;
-
-        //remove associations to any lessons
-        this.$store.lessons.forEach(function(element){
-
-          //check for deleted lessons and ignore them
-          if (element == "deleted"){
-            return;
-          }
-          if(element.students.indexOf(index) > -1){
-
-            let index_to_remove = element.students.indexOf(index);
-            element.students.splice(index_to_remove, 1);
-          }
-        });
-        //just set the index value to 'deleted' to preserve the index numbers of the other elements
-        if(confirm('This will permanently delete this student. Continue?')){
-          // need to use the Vue.set method so Vue detects the change
-          Vue.set(this.$store.students, index, 'deleted');
-        }else{
-          return;
-        }
-      },
-      editStudent(index, student) {
-        // Hide the add student from just in case its open
-        this.showStudentAddForm = false;
-
-        //reset form_valid prop
-        this.form_valid = true;
-
-        this.editing = index;
-        this.student_name = student;
-      },
-      submitEdit(index) {
-        //validate
-        if(this.student_name == ''){
-          this.form_valid = false;
-          return;
-        }
-        //get the current student
-        let current_student = this.$store.students[index];
-        //replace the name prop
-        current_student.name = this.student_name;
-        //replace the old student obj in the store prop
-        this.$store.students[index] = current_student;
-        //stop editing
-        this.editing = -1;
       }
     }
   }
