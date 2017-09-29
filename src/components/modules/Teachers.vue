@@ -7,11 +7,11 @@
       >
       </app-form-add-unit>
     </transition>
+
     <!-- Teachers list -->
     <transition name='fade'>
       <app-unit-table
         :type='type'
-        :table_association='"lessons"'
         :association='association'
       >
       </app-unit-table>
@@ -33,6 +33,7 @@ import appUnitTable from '../tables/unit_table.vue';
       return {
         type: 'teacher',
         association: 'lessons',
+        association_cleanup_refernce: 'null'
       }
     }
   }

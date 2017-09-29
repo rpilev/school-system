@@ -5,14 +5,14 @@
         <tr>
           <th>Name</th>
           <!-- only show if this table requires associations -->
-          <th v-if='table_association'>{{ table_association | capitalize }}</th>
+          <th v-if='association'>{{ association | capitalize }}</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tfoot>
         <tr>
           <th>Name</th>
-          <th v-if='table_association'>{{ table_association | capitalize }}</th>
+          <th v-if='association'>{{ association | capitalize }}</th>
           <th>Actions</th>
         </tr>
       </tfoot>
@@ -46,16 +46,16 @@
             </transition>
           </td>
           <td  
-            v-if='table_association'
+            v-if='association'
             style="text-align: center;
             color: #6ba3ff;
             cursor: pointer;"
           >
-            <router-link :to="'/'+ type +'/' + index + '/' + table_association + '/'">
-              {{  unit[table_association].length }}
+            <router-link :to="'/'+ type +'/' + index + '/' + association + '/'">
+              {{  unit[association].length }}
               <!-- plural grammar -->
-              <span v-if='unit[table_association].length == 1'>{{ table_association | capitalize | removeLastCharacter }}</span>
-              <span v-else>{{ table_association | capitalize }}</span>
+              <span v-if='unit[association].length == 1'>{{ association | capitalize | removeLastCharacter }}</span>
+              <span v-else>{{ association | capitalize }}</span>
             </router-link>
           </td>
           <td 
@@ -82,7 +82,7 @@
     props: [
       'type',
       'association',
-      'table_association'
+      'association_cleanup_refernce'
     ],
     data() {
       return {

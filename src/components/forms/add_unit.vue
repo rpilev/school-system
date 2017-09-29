@@ -4,7 +4,7 @@
       v-if='!showAddForm'
       class="button is-info add-button"
       @click='toggleAddUnit'
-    >Add Teacher</a>
+    >Add {{ type | capitalize }}</a>
 
     <!-- Teacher add form -->
     <div v-else class="field">
@@ -16,7 +16,7 @@
           v-model='unit_name'
           @input='form_valid = true'
           type="text"
-          placeholder="Teacher Name"
+          placeholder="Enter name"
         >
       </div>
       <p v-show='!form_valid' class="help is-danger">Please enter a name</p>

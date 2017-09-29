@@ -64,17 +64,18 @@ Vue.mixin({
     // Removes the unit and its associations
     // from the store
     removeUnit(index) {
-      // Contain the type in this var with let
+      // Contain these in vars with let
       // for use in ananymous functions
       let type = this.type
+      let association_cleanup_refernce = this.association_cleanup_refernce
 
       //reset editing prop just in case editing in progress 
       this.editing = -1;
 
       //remove associations to other units
       //if they exist
-      if(this.association){
-        this.$store[this.association].forEach(function(element){
+      if(association_cleanup_refernce){
+        this.$store[association_cleanup_refernce].forEach(function(element){
 
             //check for deleted units and ignore them
             if (element == "deleted"){

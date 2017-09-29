@@ -12,8 +12,8 @@
     <transition name='fade'>
       <app-unit-table
         :type='type'
-        :table_association='"students"'
         :association='association'
+        :association_cleanup_refernce = 'association_cleanup_refernce'
       > 
       </app-unit-table>
     </transition>
@@ -33,7 +33,8 @@ import appUnitTable from '../tables/unit_table.vue';
     data() {
       return {
         type: 'lesson',
-        association: 'teachers',
+        association: 'students',
+        association_cleanup_refernce: 'teachers'
       }
     }
   }

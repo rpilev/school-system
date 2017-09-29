@@ -3,7 +3,6 @@
     <transition name='fade' mode='out-in'>
       <app-form-add-unit 
         :type='type'
-        :association='association'
       >
       </app-form-add-unit>
     </transition>
@@ -12,7 +11,7 @@
     <transition name='fade'>
       <app-unit-table
         :type='type'
-        :association='association'
+        :association_cleanup_refernce = "association_cleanup_refernce"
       >
       </app-unit-table>
     </transition>
@@ -32,7 +31,7 @@ import appUnitTable from '../tables/unit_table.vue';
     data() {
       return {
         type: 'student',
-        association: 'lessons',
+        association_cleanup_refernce: 'lessons'
       }
     }
   }
