@@ -1,20 +1,16 @@
 <template>
   <div>
-    <transition name='fade' mode='out-in'>
-      <app-form-add-unit 
-        :type='type'
-      >
-      </app-form-add-unit>
-    </transition>
+    <app-form-add-unit 
+      :type='type'
+    >
+    </app-form-add-unit>
 
     <!-- Students list -->
-    <transition name='fade'>
-      <app-unit-table
-        :type='type'
-        :association_cleanup_refernce = "association_cleanup_refernce"
-      >
-      </app-unit-table>
-    </transition>
+    <app-unit-table
+      :type='type'
+      :association_cleanup_refernce = "association_cleanup_refernce"
+    >
+    </app-unit-table>
   </div>
 </template>
 

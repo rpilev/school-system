@@ -1,28 +1,24 @@
 <template>
   <div>
-    <transition name='fade' mode='out-in'>
-      <app-form-add-unit 
-        :type='type'
-        :association='association'
-      >
-      </app-form-add-unit>
-    </transition>
+    <app-form-add-unit 
+      :type='type'
+      :association='association'
+    >
+    </app-form-add-unit>
 
     <!-- Teachers list -->
-    <transition name='fade'>
-      <app-unit-table
-        :type='type'
-        :association='association'
-      >
-      </app-unit-table>
-    </transition>
+    <app-unit-table
+      :type='type'
+      :association='association'
+    >
+    </app-unit-table>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import appFormAddUnit from '../forms/add_unit.vue';
-import appUnitTable from '../tables/unit_table.vue';
+  import Vue from 'vue';
+  import appFormAddUnit from '../forms/add_unit.vue';
+  import appUnitTable from '../tables/unit_table.vue';
 
   export default {
     components: {
