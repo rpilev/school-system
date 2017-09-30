@@ -50,6 +50,7 @@ If no other development servers are currently running on the local machine then 
   * [vue-router](https://github.com/vuejs/vue-router)
   * [vue-stash](https://github.com/cklmercer/vue-stash)
   * [vue-awesome](https://github.com/Justineo/vue-awesome)
+  * [vue-tables-2](https://github.com/matfish2/vue-tables-2)
 * [Bulma](https://github.com/jgthms/bulma)
 
 ## Authors

@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name='fade'>
-      <table v-show='$store[type + "s"].length != 0' class="table">
+      <table v-show='Object.keys($store[type + "s"]).length != 0' class="table">
         <thead>
           <tr>
             <th>Name</th>
@@ -18,12 +18,10 @@
           </tr>
         </tfoot>
         <transition-group name='slide' tag="tbody">
-          <!-- check if index for deleted items -->
+
           <tr
             :key="index"
-            v-for='(unit, index) in $store[type + "s"]'
-            v-if='unit != "deleted"'>
-            
+            v-for='(unit, index) in $store[type + "s"]'>            
             
             <td class="table-restricted-size">
               <transition name='slide' mode='out-in'>

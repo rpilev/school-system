@@ -36,6 +36,10 @@ import appUnitTable from '../tables/unit_table.vue';
 </script>
 
 <style scoped>
+
+  table {
+    font-size: 18px !important;
+  }
   .label {
     text-align: left;
   }

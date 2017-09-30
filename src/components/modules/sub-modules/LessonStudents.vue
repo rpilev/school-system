@@ -9,12 +9,12 @@
         Lessons
       </p>
       <ul class="menu-list">
-        <!-- List all students (if not null /deleted) -->
-        <li v-for="(student, index) in all_students" v-if='student != "deleted"'>
+        <!-- List all students -->
+        <li v-for="(student, index) in all_students">
           <label class="checkbox">
             <input
               v-model='$store.lessons[lesson_id].students'
-              :value="index"
+              :value="parseInt(index)"
               type="checkbox"
             >
             {{ student.name }}
