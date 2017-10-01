@@ -74,7 +74,7 @@ export default {
         }
       }
       
-      if(confirm('This will permanently delete this student. Continue?')){
+      if(confirm('Deleting this permanently. Continue?')){
 
         Vue.delete(this.$store[type + 's'], index);
 

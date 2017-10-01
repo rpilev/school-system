@@ -29,7 +29,7 @@ import Vue from 'vue';
     },
     methods: {
       removeGrade(index) {
-        if(confirm('This will permanently delete this lesson. Continue?')){
+        if(confirm('Deleting this permanently. Continue?')){
           Vue.delete(this.$store.grades, index);
         }
       }, 
