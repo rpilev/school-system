@@ -14,7 +14,6 @@
               <option disabled selected value></option>
               <option 
                 v-for='(student, index) in students'
-                v-if='student != "deleted"'
                 :value='index'
               >
                 {{ student.name }}
@@ -29,17 +28,20 @@
         <label class="label">Subject</label>
         <div class="control">
           <div class="select">
-            <select @change='inquiry = "Teacher"' v-model='selected_lesson'>
+            <select @change='inquiry = "Teacher"' v-model='selected_lesson' v-if='checkForResults(lessons, "students", selected_student)'>
               <option disabled selected value></option>
-              <!-- v-if igores deleted lessons and lessons that are not associated with the perviously selected student -->
+              <!-- v-if igores lessons that are not associated with the perviously selected student -->
               <option 
                 v-for='(lesson, index) in lessons'
-                v-if='lesson != "deleted" && $store.lessons[index].students.indexOf(selected_student) > -1'
+                v-if='lessons[index].students.indexOf(parseInt(selected_student)) > -1'
                 :value='index'
               >
                 {{ lesson.name }}
               </option>
             </select>
+            <p v-else>
+              No results found
+            </p>
           </div>
         </div>
       </div>
@@ -49,16 +51,19 @@
         <label class="label">Teacher</label>
         <div class="control">
           <div class="select">
-            <select @change='inquiry = "Rest"' v-model='selected_teacher'>
+            <select @change='inquiry = "Rest"' v-model='selected_teacher' v-if="checkForResults(teachers, 'lessons', selected_lesson)">
               <option disabled selected value></option>
               <option
                 v-for='(teacher, index) in teachers'
-                v-if='teacher != "deleted" && $store.teachers[index].lessons.indexOf(selected_lesson) > -1'
+                v-if='teachers[index].lessons.indexOf(parseInt(selected_lesson)) > -1'
                 :value='index'
               >
                 {{ teacher.name }}
               </option>
             </select>
+            <p v-else>
+              No results found
+            </p>
           </div>
         </div>
       </div>
@@ -129,6 +134,8 @@
         entered_comment: '',
         selected_grade: -1,
 
+        results_found: 0,
+
         lessons: this.$store.lessons,
         teachers: this.$store.teachers,
         students: this.$store.students,
@@ -137,7 +144,26 @@
       }
     },
     methods: {
+      checkForResults(where, association, selected_unit) {
+        let results = 0;
+        for (var key in where) {
+          if (!where.hasOwnProperty(key)) {
+            continue;
+          }
+          console.log(key);
+          if(where[key][association].indexOf(parseInt(selected_unit)) > -1)
+            results++;
+        }
+        if(results > 0)
+          return true;
+        else
+          return false;
+      },
       submitGrade() {
+        // Generate a unique id
+        let id = this.$store.last_insert_ids['grade'] + 1;
+        this.$store.last_insert_ids['grade'] = id;
+
         //construct new grade oject and push to grades array in store
         let grade = {
           lesson_id: this.selected_lesson,
@@ -148,7 +174,7 @@
           grade: this.selected_grade
         }
 
-        this.$store.grades.push(grade);
+        this.$store.grades[id] = grade;
 
         //reset back to inital state
         this.inquiry = 'Student';

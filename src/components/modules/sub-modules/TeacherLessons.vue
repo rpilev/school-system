@@ -15,7 +15,7 @@
             <!-- v-model the selection directly to the store attr -->
             <input 
               v-model='$store.teachers[teacher_id].lessons'
-              :value="index"
+              :value="parseInt(index)"
               type="checkbox"
             >
             {{ lesson.name }}
