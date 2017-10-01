@@ -103,6 +103,10 @@ import Vue from 'vue';
     border-radius: 10px;
     font-weight: bolder;
   }
+  .VuePagination__pagination-item-next-chunk,
+  .VuePagination__pagination-item-prev-chunk {
+    display: none;
+  }
   .VuePagination__pagination-item.page-item{
     padding: 5px 15px;
   }
