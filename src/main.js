@@ -41,25 +41,25 @@ new Vue({
       last_insert_ids: {
         teacher: 3,
         student: 7,
-        lesson: 2,
+        subject: 2,
         grade: 13
       },
       teachers: {
         0: {
           name: 'Sandra',
-          lessons: [0, 1, 2]
+          subjects: [0, 1, 2]
         },
         1: {
           name: 'Karl',
-          lessons: [0, 2]
+          subjects: [0, 2]
         },
         2: {
           name: 'Mary',
-          lessons: [1, 2]
+          subjects: [1, 2]
         },
         3: {
           name: 'John',
-          lessons: [2]
+          subjects: [2]
         }
       },
       students: {
@@ -88,7 +88,7 @@ new Vue({
           name: 'Joanna'
         }
       },
-      lessons: {
+      subjects: {
         0: {
           name: 'German',
           students: [0, 1, 2, 3, 4]
@@ -104,7 +104,7 @@ new Vue({
       },
       grades: {
         0: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 3,
           teacher_id: 0,
           date: '2017-09-20',
@@ -112,7 +112,7 @@ new Vue({
           grade: 2
         },
         1: {
-          lesson_id: 0,
+          subject_id: 0,
           student_id: 3,
           teacher_id: 0,
           date: '2017-09-20',
@@ -120,7 +120,7 @@ new Vue({
           grade: 4
         },
         2: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 4,
           teacher_id: 0,
           date: '2017-08-07',
@@ -128,7 +128,7 @@ new Vue({
           grade: 0
         },
         3: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 6,
           teacher_id: 2,
           date: '2017-08-09',
@@ -136,7 +136,7 @@ new Vue({
           grade: 0
         },
         4: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 6,
           teacher_id: 0,
           date: '2017-08-09',
@@ -144,7 +144,7 @@ new Vue({
           grade: 5
         },
         5: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 6,
           teacher_id: 2,
           date: '2017-08-06',
@@ -152,7 +152,7 @@ new Vue({
           grade: 5
         },
         6: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 6,
           teacher_id: 0,
           date: '2017-08-17',
@@ -160,7 +160,7 @@ new Vue({
           grade: 4
         },
         7: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 6,
           teacher_id: 2,
           date: '2017-08-15',
@@ -168,7 +168,7 @@ new Vue({
           grade: 1
         },
         8: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 0,
           teacher_id: 3,
           date: '2017-08-13',
@@ -176,7 +176,7 @@ new Vue({
           grade: 4
         },
         9: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 0,
           teacher_id: 0,
           date: '2017-08-11',
@@ -184,7 +184,7 @@ new Vue({
           grade: 3
         },
         10: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 3,
           teacher_id: 0,
           date: '2017-08-10',
@@ -192,7 +192,7 @@ new Vue({
           grade: 0
         },
         11: {
-          lesson_id: 2,
+          subject_id: 2,
           student_id: 2,
           teacher_id: 1,
           date: '2017-08-10',
@@ -200,7 +200,7 @@ new Vue({
           grade: 5
         },
         12: {
-          lesson_id: 0,
+          subject_id: 0,
           student_id: 1,
           teacher_id: 0,
           date: '2017-08-10',
@@ -208,7 +208,7 @@ new Vue({
           grade: 5
         },
         13: {
-          lesson_id: 1,
+          subject_id: 1,
           student_id: 0,
           teacher_id: 0,
           date: '2017-08-17',

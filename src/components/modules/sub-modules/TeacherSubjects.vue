@@ -1,9 +1,9 @@
 <template>
   <div>
     <app-association-table
-      :id = "lesson_id"
-      :type = "'lessons'"
-      :association = "'students'"
+      :id = "teacher_id"
+      :type = "'teachers'"
+      :association = "'subjects'"
     >
     </app-association-table>
   </div>
@@ -18,7 +18,7 @@ import AssociationTable from '../../tables/association_table.vue';
     },
     data() {
       return {
-        lesson_id: this.$route.params.id,
+        teacher_id: this.$route.params.id,
       }
     }
   }

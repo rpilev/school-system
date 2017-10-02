@@ -21,7 +21,7 @@
             <router-link to="/students" class="navbar-item"  active-class="active">
               Students
             </router-link>
-            <router-link to="/lessons" class="navbar-item"  active-class="active">
+            <router-link to="/subjects" class="navbar-item"  active-class="active">
               Subjects
             </router-link>
             <router-link to="/grades" class="navbar-item"  active-class="active">

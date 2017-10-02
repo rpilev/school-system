@@ -62,7 +62,7 @@
               text-align:center;
               font-weight: bolder;"
             >
-              <!-- lesson name edit and delete buttons -->
+              <!-- subject name edit and delete buttons -->
               <span @click = 'editUnit(index, unit.name)'>
                 <icon style='color:green;'  name='pencil'></icon>
               </span>

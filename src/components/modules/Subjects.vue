@@ -6,7 +6,7 @@
     >
     </app-form-add-unit>
 
-    <!-- Lessons list -->
+    <!-- Subjects list -->
     <app-unit-table
       :type='type'
       :association='association'
@@ -27,7 +27,7 @@ import appUnitTable from '../tables/unit_table.vue';
     },
     data() {
       return {
-        type: 'lesson',
+        type: 'subject',
         association: 'students',
         association_cleanup_refernce: 'teachers'
       }

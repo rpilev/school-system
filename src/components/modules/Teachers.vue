@@ -28,7 +28,7 @@
     data() {
       return {
         type: 'teacher',
-        association: 'lessons',
+        association: 'subjects',
         association_cleanup_refernce: 'null'
       }
     }

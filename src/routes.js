@@ -3,10 +3,10 @@ import Stats from './components/modules/Stats.vue';
 import Teachers from './components/modules/Teachers.vue';
 import Students from './components/modules/Students.vue';
 import Grades from './components/modules/Grades.vue';
-import Lessons from './components/modules/Lessons.vue';
+import Subjects from './components/modules/Subjects.vue';
 
-import TeacherLessons from './components/modules/sub-modules/TeacherLessons.vue';
-import LessonStudents from './components/modules/sub-modules/LessonStudents.vue';
+import TeacherSubjects from './components/modules/sub-modules/TeacherSubjects.vue';
+import SubjectStudents from './components/modules/sub-modules/SubjectStudents.vue';
 
 export const routes = [
   /*main paths */
@@ -27,16 +27,16 @@ export const routes = [
     component: Grades
   },
   {
-    path: '/lessons',
-    component: Lessons
+    path: '/subjects',
+    component: Subjects
   },
   /* sub-sections */
   {
-    path: '/teacher/:id/lessons/',
-    component: TeacherLessons
+    path: '/teacher/:id/subjects/',
+    component: TeacherSubjects
   },
   {
-    path: '/lesson/:id/students/',
-    component: LessonStudents
+    path: '/subject/:id/students/',
+    component: SubjectStudents
   }
 ]

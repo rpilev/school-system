@@ -27,7 +27,7 @@ import appUnitTable from '../tables/unit_table.vue';
     data() {
       return {
         type: 'student',
-        association_cleanup_refernce: 'lessons'
+        association_cleanup_refernce: 'subjects'
       }
     }
   }

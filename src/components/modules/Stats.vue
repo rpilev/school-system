@@ -19,11 +19,11 @@ import Vue from 'vue';
   export default {
     data() {
       return {
-        table_columns: ['lesson_name', 'student_name', 'teacher_name', 'grade', 'comment', 'date', 'delete'],
+        table_columns: ['subject_name', 'student_name', 'teacher_name', 'grade', 'comment', 'date', 'delete'],
 
         grades: this.$store.grades,
         students: this.$store.students,
-        lessons: this.$store.lessons,
+        subjects: this.$store.subjects,
         teachers: this.$store.teachers
       }
     },
@@ -42,15 +42,15 @@ import Vue from 'vue';
         for (var key in this.grades){
           if (!this.grades.hasOwnProperty(key)) continue;
 
-          //check if lesson/student/teacher in the given grade has been deleted
-          let lesson_name = '';
+          //check if subject/student/teacher in the given grade has been deleted
+          let subject_name = '';
           let student_name = '';
           let teacher_name = '';
 
-          if(!this.lessons[this.grades[key].lesson_id]){
-            lesson_name = "**Deleted lesson**"
+          if(!this.subjects[this.grades[key].subject_id]){
+            subject_name = "**Deleted subject**"
           }else{
-            lesson_name = this.lessons[this.grades[key].lesson_id].name;
+            subject_name = this.subjects[this.grades[key].subject_id].name;
           }
           if(!this.students[this.grades[key].student_id]){
             student_name = "**Deleted student**"
@@ -65,7 +65,7 @@ import Vue from 'vue';
           
           result.push({
             id: key,
-            lesson_name: lesson_name,
+            subject_name: subject_name,
             student_name: student_name,
             teacher_name: teacher_name,
             date: this.grades[key].date,
