@@ -10,7 +10,7 @@
         <label class="label">Student</label>
         <div class="control">
           <div class="select">
-            <select @change='inquiry = "Subject"' v-model='selected_student'>
+            <select @change='inquiry = "Lesson"' v-model='selected_student'>
               <option disabled selected value></option>
               <option 
                 v-for='(student, index) in students'
@@ -23,20 +23,20 @@
         </div>
       </div>
 
-      <!-- Subject selection -->
-      <div key='2' v-else-if='inquiry == "Subject"' class="field">
+      <!-- Lesson selection -->
+      <div key='2' v-else-if='inquiry == "Lesson"' class="field">
         <label class="label">Subject</label>
         <div class="control">
           <div class="select">
-            <select @change='inquiry = "Teacher"' v-model='selected_subject' v-if='checkForResults(subjects, "students", selected_student)'>
+            <select @change='inquiry = "Teacher"' v-model='selected_lesson' v-if='checkForResults(lessons, "students", selected_student)'>
               <option disabled selected value></option>
-              <!-- v-if igores subjects that are not associated with the perviously selected student -->
+              <!-- v-if igores lessons that are not associated with the perviously selected student -->
               <option 
-                v-for='(subject, index) in subjects'
-                v-if='subjects[index].students.indexOf(parseInt(selected_student)) > -1'
+                v-for='(lesson, index) in lessons'
+                v-if='lessons[index].students.indexOf(parseInt(selected_student)) > -1'
                 :value='index'
               >
-                {{ subject.name }}
+                {{ lesson.name }}
               </option>
             </select>
             <p v-else>
@@ -51,11 +51,11 @@
         <label class="label">Teacher</label>
         <div class="control">
           <div class="select">
-            <select @change='inquiry = "Rest"' v-model='selected_teacher' v-if="checkForResults(teachers, 'subjects', selected_subject)">
+            <select @change='inquiry = "Rest"' v-model='selected_teacher' v-if="checkForResults(teachers, 'lessons', selected_lesson)">
               <option disabled selected value></option>
               <option
                 v-for='(teacher, index) in teachers'
-                v-if='teachers[index].subjects.indexOf(parseInt(selected_subject)) > -1'
+                v-if='teachers[index].lessons.indexOf(parseInt(selected_lesson)) > -1'
                 :value='index'
               >
                 {{ teacher.name }}
@@ -127,7 +127,7 @@
       return {
         inquiry: 'Student',
 
-        selected_subject: -1,
+        selected_lesson: -1,
         selected_student: -1,
         selected_teacher: -1,
         selected_date: -1,
@@ -136,9 +136,9 @@
 
         results_found: 0,
 
-        subjects: this.$store.subjects,
-        teachers: this.$store.teachers,
-        students: this.$store.students,
+        lessons: this.$store.data.lessons,
+        teachers: this.$store.data.teachers,
+        students: this.$store.data.students,
 
         success_message: false
       }
@@ -161,12 +161,12 @@
       },
       submitGrade() {
         // Generate a unique id
-        let id = this.$store.last_insert_ids['grade'] + 1;
-        this.$store.last_insert_ids['grade'] = id;
+        let id = this.$store.data.last_insert_ids['grade'] + 1;
+        this.$store.data.last_insert_ids['grade'] = id;
 
         //construct new grade oject and push to grades array in store
         let grade = {
-          subject_id: this.selected_subject,
+          lesson_id: this.selected_lesson,
           student_id: this.selected_student,
           teacher_id: this.selected_teacher,
           date: this.selected_date,
@@ -174,12 +174,12 @@
           grade: this.selected_grade
         }
 
-        this.$store.grades[id] = grade;
+        this.$store.data.grades[id] = grade;
 
         //reset back to inital state
         this.inquiry = 'Student';
 
-        this.selected_subject = -1;
+        this.selected_lesson = -1;
         this.selected_student = -1;
         this.selected_teacher = -1;
         this.selected_date = 1;

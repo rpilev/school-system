@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name='fade'>
-      <table v-show='Object.keys($store[type + "s"]).length != 0' class="table">
+      <table v-show='Object.keys($store.data[type + "s"]).length != 0' class="table">
         <thead>
           <tr>
             <th>Name</th>
@@ -21,7 +21,7 @@
 
           <tr
             :key="index"
-            v-for='(unit, index) in $store[type + "s"]'>            
+            v-for='(unit, index) in $store.data[type + "s"]'>            
             
             <td class="table-restricted-size">
               <transition name='slide' mode='out-in'>

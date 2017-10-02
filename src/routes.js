@@ -4,9 +4,9 @@ import Teachers from './components/modules/Teachers.vue';
 import Students from './components/modules/Students.vue';
 import Grades from './components/modules/Grades.vue';
 import Subjects from './components/modules/Subjects.vue';
-
 import TeacherSubjects from './components/modules/sub-modules/TeacherSubjects.vue';
 import SubjectStudents from './components/modules/sub-modules/SubjectStudents.vue';
+import ImportExport from './components/modules/ImportExport.vue';
 
 export const routes = [
   /*main paths */
@@ -29,6 +29,10 @@ export const routes = [
   {
     path: '/subjects',
     component: Subjects
+  },
+  {
+    path: '/import-export',
+    component: ImportExport
   },
   /* sub-sections */
   {

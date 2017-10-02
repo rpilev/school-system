@@ -13,7 +13,7 @@
         <li v-for="(unit, index) in all_associations">
           <label class="checkbox">
             <input
-              v-model='$store[type][id][association]'
+              v-model='$store.data[type][id][association]'
               :value="parseInt(index)"
               type="checkbox"
             >
@@ -30,9 +30,9 @@
     props: ['id', 'type', 'association'],
     data() {
       return {
-        type_name: this.$store[this.type][this.id].name,
+        type_name: this.$store.data[this.type][this.id].name,
         
-        all_associations: this.$store[this.association]
+        all_associations: this.$store.data[this.association]
       }
     }
   }

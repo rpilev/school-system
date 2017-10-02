@@ -21,16 +21,16 @@ import Vue from 'vue';
       return {
         table_columns: ['subject_name', 'student_name', 'teacher_name', 'grade', 'comment', 'date', 'delete'],
 
-        grades: this.$store.grades,
-        students: this.$store.students,
-        subjects: this.$store.subjects,
-        teachers: this.$store.teachers
+        grades: this.$store.data.grades,
+        students: this.$store.data.students,
+        subjects: this.$store.data.subjects,
+        teachers: this.$store.data.teachers
       }
     },
     methods: {
       removeGrade(index) {
         if(confirm('Deleting this permanently. Continue?')){
-          Vue.delete(this.$store.grades, index);
+          Vue.delete(this.$store.data.grades, index);
         }
       }, 
     },

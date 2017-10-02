@@ -27,6 +27,9 @@
             <router-link to="/grades" class="navbar-item"  active-class="active">
               Grades
             </router-link>
+            <router-link to="/import-export" class="navbar-item"  active-class="active">
+              Import / Export
+            </router-link>
           </div>
         </div>
       </transition>
