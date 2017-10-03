@@ -7,6 +7,7 @@ This is a front-end demo of a school management system.
 * Associating teachers with students
 * Associating students with subjects
 * Grading students
+* Importing and exporting data
 * Viewing statistics
   * Search
   * Sort
