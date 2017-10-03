@@ -30,12 +30,12 @@ export default {
       new_unit[this.association] = [];
 
       // Generate a unique id
-      let id = this.$store.last_insert_ids[this.type] + 1;
-      this.$store.last_insert_ids[this.type] = id;
+      let id = this.$store.data.last_insert_ids[this.type] + 1;
+      this.$store.data.last_insert_ids[this.type] = id;
 
       // Add to store
       // the type name has to be plural for the store
-      Vue.set(this.$store[this.type + 's'], id, new_unit);
+      Vue.set(this.$store.data[this.type + 's'], id, new_unit);
 
       //Reset fields and close the form
       this.unit_name = '';
@@ -62,21 +62,21 @@ export default {
       // other units that could be associted with this 
       // object
       if(association_cleanup_refernce){
-        for (var key in this.$store[association_cleanup_refernce]) {
+        for (var key in this.$store.data[association_cleanup_refernce]) {
 
-          if (!this.$store[association_cleanup_refernce].hasOwnProperty(key)) continue;
+          if (!this.$store.data[association_cleanup_refernce].hasOwnProperty(key)) continue;
           
-          if(this.$store[association_cleanup_refernce][key][type + 's'].indexOf(parseInt(index)) > -1){
+          if(this.$store.data[association_cleanup_refernce][key][type + 's'].indexOf(parseInt(index)) > -1){
 
-            let index_to_remove = this.$store[association_cleanup_refernce][key][type + 's'].indexOf(parseInt(index));
-            this.$store[association_cleanup_refernce][key][type + 's'].splice(index_to_remove, 1);
+            let index_to_remove = this.$store.data[association_cleanup_refernce][key][type + 's'].indexOf(parseInt(index));
+            this.$store.data[association_cleanup_refernce][key][type + 's'].splice(index_to_remove, 1);
           }
         }
       }
       
       if(confirm('Deleting this permanently. Continue?')){
 
-        Vue.delete(this.$store[type + 's'], index);
+        Vue.delete(this.$store.data[type + 's'], index);
 
       }else{
         return;
@@ -103,11 +103,11 @@ export default {
         return;
       }
       //get the current unit
-      let current_unit = this.$store[this.type + 's'][index];
+      let current_unit = this.$store.data[this.type + 's'][index];
       //replace the name prop
       current_unit.name = this.unit_name;
       //replace the old lesson obj in the store prop
-      this.$store[this.type + 's'][index] = current_unit;
+      this.$store.data[this.type + 's'][index] = current_unit;
       //stop editing
       this.editing = -1;
     }
